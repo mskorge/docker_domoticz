@@ -17,6 +17,8 @@ MAINTAINER Sylvain Desbureaux <sylvain@desbureaux.fr>
 ARG VCS_REF
 ARG BUILD_DATE
 
+ENV TZ Europe/Stockholm
+
 LABEL org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/domoticz/domoticz" \
       org.label-schema.url="https://domoticz.com/" \
@@ -40,6 +42,7 @@ RUN apk add --no-cache git \
 	 coreutils \
 	 zlib zlib-dev \
 	 udev eudev-dev \
+	 tzdata \
 	 linux-headers && \
 	 git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
 	 cd /src/open-zwave && \
