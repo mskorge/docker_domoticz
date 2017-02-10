@@ -51,10 +51,8 @@ RUN apk add --no-cache git \
 	 make && \
 	 rm -rf /src/domoticz/.git && \
 	 apk del git cmake python3-dev linux-headers libusb-dev zlib-dev libressl-dev boost-dev sqlite-dev build-base eudev-dev coreutils curl-dev && \
-	 ln -s /config/images /src/domoticz/www/images
 
 VOLUME /config
-
 
 EXPOSE 8080
 
