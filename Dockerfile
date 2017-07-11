@@ -44,18 +44,13 @@ RUN apk add --no-cache git \
 	 udev eudev-dev \
 	 tzdata \
 	 linux-headers && \
-	 git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
-	 cd /src/open-zwave && \
-	 make && \
-	 ln -s /src/open-zwave /src/open-zwave-read-only && \
 	 git clone --depth 2 https://github.com/domoticz/domoticz.git /src/domoticz && \
 	 cd /src/domoticz && \
 	 git fetch --unshallow && \
 	 cmake -DCMAKE_BUILD_TYPE=Release . && \
 	 make && \
 	 rm -rf /src/domoticz/.git && \
-	 rm -rf /src/open-zwave/.git && \
-	 apk del git cmake python3-dev linux-headers libusb-dev zlib-dev libressl-dev boost-dev sqlite-dev build-base eudev-dev coreutils curl-dev
+	 apk del git cmake python3-dev linux-headers libusb-dev zlib-dev libressl-dev boost-dev sqlite-dev build-base eudev-dev coreutils curl-dev && \
 
 VOLUME /config
 
