@@ -47,7 +47,7 @@ RUN apk add --no-cache git \
 	 git clone --depth 2 https://github.com/domoticz/domoticz.git /src/domoticz && \
 	 cd /src/domoticz && \
 	 git fetch --unshallow && \
-	 cmake -DCMAKE_BUILD_TYPE=Release . && \
+	 cmake -DCMAKE_BUILD_TYPE=Release -Wno-error -DCMAKE_EXE_LINKER_FLAGS=-lboost_atomic . && \
 	 make && \
 	 rm -rf /src/domoticz/.git && \
 	 apk del git cmake python3-dev linux-headers libusb-dev zlib-dev libressl-dev boost-dev sqlite-dev build-base eudev-dev coreutils curl-dev && \
