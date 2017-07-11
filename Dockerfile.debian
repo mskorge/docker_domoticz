@@ -19,15 +19,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
 	 libssl1.0.2 libssl-dev \
 	 build-essential cmake \
 	 libboost-dev \
-	 libboost-thread1.61.0 libboost-thread-dev \
-	 libboost-system1.61.0 libboost-system-dev \
-	 libboost-date-time1.61.0 libboost-date-time-dev \
+	 libboost-thread1.62.0 libboost-thread-dev \
+	 libboost-system1.62.0 libboost-system-dev \
+	 libboost-date-time1.62.0 libboost-date-time-dev \
 	 libsqlite3-0 libsqlite3-dev \
 	 curl libcurl3 libcurl4-openssl-dev \
 	 libusb-0.1-4 libusb-dev \
 	 zlib1g-dev \
 	 libudev-dev \
 	 linux-headers-amd64 \
+	 python3-dev
 	 ca-certificates && \
 	git clone --depth 2 https://github.com/OpenZWave/open-zwave.git /src/open-zwave && \
 	cd /src/open-zwave && \
@@ -38,7 +39,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends --fix-missing \
 	git fetch --unshallow && \
 	cmake -DCMAKE_BUILD_TYPE=Release . && \
 	make && \
-	apt-get remove -y git cmake linux-headers-amd64 build-essential libssl-dev libboost-dev libboost-thread-dev libboost-system-dev libsqlite3-dev libcurl4-openssl-dev libusb-dev zlib1g-dev libudev-dev && \
+	apt-get remove -y git cmake linux-headers-amd64 build-essential libssl-dev libboost-dev libboost-thread-dev libboost-system-dev libsqlite3-dev libcurl4-openssl-dev libusb-dev zlib1g-dev libudev-dev python3-dev && \
    apt-get autoremove -y && \ 
    apt-get clean && \
    rm -rf /var/lib/apt/lists/* && \
@@ -60,6 +61,9 @@ LABEL org.label-schema.vcs-ref=$VCS_REF \
 VOLUME /config
 
 EXPOSE 8080
+
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD curl -f http://localhost:8080/ || exit 1
 
 ENTRYPOINT ["/src/domoticz/domoticz", "-dbase", "/config/domoticz.db"]
 CMD ["-www", "8080"]
