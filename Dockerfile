@@ -2,11 +2,6 @@ FROM alpine:latest
 MAINTAINER Sylvain Desbureaux <sylvain@desbureaux.fr>
 
 # install packages &
-## OpenZwave installation &
-# grep git version of openzwave &
-# untar the files &
-# compile &
-# "install" in order to be found by domoticz &
 ## Domoticz installation &
 # clone git source in src &
 # Domoticz needs the full history to be able to calculate the version string &
@@ -16,8 +11,6 @@ MAINTAINER Sylvain Desbureaux <sylvain@desbureaux.fr>
 
 ARG VCS_REF
 ARG BUILD_DATE
-
-ENV TZ Europe/Stockholm
 
 LABEL org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/domoticz/domoticz" \
