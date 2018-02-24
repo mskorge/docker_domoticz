@@ -26,6 +26,7 @@ RUN apk add --no-cache git \
 	 libssl1.0 libressl-dev \
 	 build-base cmake \
 	 boost-dev \
+	 libboost-all-dev \
 	 boost-thread \
 	 boost-system \
 	 boost-date_time \
